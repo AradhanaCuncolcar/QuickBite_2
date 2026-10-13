@@ -181,7 +181,10 @@ THEME_CSS = f"""
 @keyframes qb-wallpaper {{ from {{ transform:translate3d(0,0,0); }} to {{ transform:translate3d(280px,250px,0); }} }}
 
 /* content above the background */
-[data-testid="stAppViewContainer"], [data-testid="stMain"] {{ background:transparent; position:relative; z-index:1; }}
+/* Keep Streamlit's own positioning on the app container (it pins the app to the window height, which is what
+   lets the sidebar and the page scroll). Only lift it above the background layers. */
+[data-testid="stAppViewContainer"] {{ background:transparent; z-index:1; }}
+[data-testid="stMain"] {{ background:transparent; position:relative; z-index:1; }}
 [data-testid="stHeader"] {{ background:transparent; }}
 [data-testid="stSidebar"] {{ background:rgba(255,255,255,.86); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
   border-right:1px solid rgba(255,255,255,.9); }}
